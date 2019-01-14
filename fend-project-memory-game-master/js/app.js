@@ -10,6 +10,24 @@
  *   - add each card's HTML to the page
  */
 
+
+// list of all cards 
+ var cards = [ 'fa-diamond' , 'fa-diamond', 
+                'fa-paper-plane-o', 'fa-paper-plane-o',
+                'fa-anchor' , 'fa-anchor' , 
+                'fa-bolt', 'fa-bolt',
+                'fa-cube', 'fa-cube',
+                'fa-leaf', 'fa-leaf',
+                'fa-bicycle', 'fa-bicycle',
+                'fa-bomb','fa-bomb'] ; 
+                
+
+// 
+function generateCard(card) { 
+    return `<li class="card"><i class= "fa ${card}"></i></li>`; 
+}
+
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -26,6 +44,8 @@ function shuffle(array) {
 }
 
 
+
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -37,12 +57,25 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-//creating cards variable 
+ function initGame() {
+     var deck = document.querySelector('.deck');
+     
+    var cardHTML  = shuffle(cards).map(function(card){
+        return generateCard(card);
+    } );
+    deck.innerHTML = cardHTML.join('');
+    console.log(cardHTML);
+
+
+ } 
+initGame();
+
+//selecting cards variable 
 var allCards = document.querySelectorAll('.card');
 //crteating cards array 
 var openCards = [];
 
-console.log(allCards);
+
 
 
 allCards.forEach(function (card) {
